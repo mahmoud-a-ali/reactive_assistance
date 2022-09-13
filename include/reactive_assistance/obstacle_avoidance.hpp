@@ -5,13 +5,11 @@
 #include <vector>
 
 #include <boost/thread.hpp>
-
 #include <ros/ros.h>
 
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
-
 #include <tf2_ros/buffer.h>
 
 #include <reactive_assistance/react_ass_types.hpp>

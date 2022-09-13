@@ -29,8 +29,8 @@ namespace reactive_assistance
     ros::NodeHandle nh_priv("~");
 
     nh_priv.param<std::string>("base_frame", robot_frame_, std::string("base_link"));
-    nh_priv.param<std::string>("odom_frame", odom_frame_, std::string("odom"));
-    nh_priv.param<std::string>("world_frame", world_frame_, std::string("map"));
+    nh_priv.param<std::string>("odom_frame", odom_frame_, std::string("world"));
+    nh_priv.param<std::string>("world_frame", world_frame_, std::string("world"));
 
     double fp_len, fp_wid;
     nh_priv.param<double>("footprint_length", fp_len, 0.55);
