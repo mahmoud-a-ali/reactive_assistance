@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
     tf2_ros
     tf2_geometry_msgs
     visualization_msgs
+    std_msgs
 )
 
 find_package(Boost REQUIRED COMPONENTS system)
@@ -39,6 +40,11 @@ add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EX
 target_link_libraries(${PROJECT_NAME}
     ${catkin_LIBRARIES}
     ${Boost_LIBRARIES}
+)
+
+catkin_install_python(PROGRAMS
+  scripts/save_data.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 add_executable(${PROJECT_NAME}_node src/reactive_assistance_node.cpp)

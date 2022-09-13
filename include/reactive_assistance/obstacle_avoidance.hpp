@@ -79,6 +79,7 @@ namespace reactive_assistance
       ros::Publisher obs_pub_;
       ros::Publisher footprint_pub_;
       ros::Publisher goal_pub_;
+      ros::Publisher goal_reached_pub_;
 
       ros::Subscriber odom_sub_;
       ros::Subscriber goal_sub_;

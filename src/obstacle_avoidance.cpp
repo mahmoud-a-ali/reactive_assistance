@@ -1,6 +1,7 @@
 #include <cmath>
 
 #include <geometry_msgs/PoseArray.h>
+#include <std_msgs/Bool.h>
 #include <visualization_msgs/Marker.h>
 
 #include <tf2_ros/transform_listener.h>
@@ -97,6 +98,9 @@ namespace reactive_assistance
 
     safe_cmd_pub_ = nh.advertise<geometry_msgs::Twist>(safe_cmd_pub_topic, 10); 
     auto_cmd_pub_ = nh.advertise<geometry_msgs::Twist>(auto_cmd_pub_topic, 10); 
+    
+    goal_reached_pub_ = nh.advertise<std_msgs::Bool>("/goal_reached", 10); 
+
 
     // Below publishers are for debugging/visualisation purposes
     traj_pub_ = nh.advertise<geometry_msgs::PoseArray>(traj_pub_topic, 10); 
@@ -135,6 +139,8 @@ namespace reactive_assistance
     }
   }
 
+
+   // to save time, linear, angular 
   void ObstacleAvoidance::odomCallback(const nav_msgs::Odometry::ConstPtr& odom)
   { 
     boost::mutex::scoped_lock lock(odom_mutex_);
@@ -509,6 +515,10 @@ namespace reactive_assistance
         geometry_msgs::Twist zero_twist;
         zero_twist.linear.x = zero_twist.angular.z = 0.0;
         auto_cmd_pub_.publish(zero_twist);
+
+        std_msgs::Bool goal_state;
+        goal_state.data = true;
+        goal_reached_pub_.publish(goal_state);
       }
 
       if (available_goal_)
