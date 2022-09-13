@@ -40,6 +40,8 @@ namespace reactive_assistance
     closest_gap_pub_ = nh.advertise<PointCloud>(closest_gap_pub_topic, 10); 
   }
 
+
+   // to save time, r_min
   void ObstacleMap::scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
   { 
     boost::mutex::scoped_lock lock(scan_mutex_);
@@ -47,6 +49,7 @@ namespace reactive_assistance
 
     updateObstacles();
     updateGaps();
+    //find_min_range()
   }
   
   // Return the closest gap from in_gaps according to either the angular or Euclidean distance

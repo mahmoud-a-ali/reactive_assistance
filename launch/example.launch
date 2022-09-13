@@ -23,7 +23,9 @@
     <remap from="auto_vel" to="cmd_vel"/>
     <remap from="odom" to="ground_truth/state"/>
   </node>  
-
+     <node pkg="reactive_assistance" type="save_data.py" name="save_data"  output="screen" >
+     <param name="alg" type="string" value="adm_gap" />
+     </node>
     <!-- <node pkg="tf" type="static_transform_publisher" name="odom_2_world_tf" args="0 0 0 0 0 0 1 odom  world 60"/> -->
 
 </launch>
